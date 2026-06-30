@@ -213,13 +213,31 @@ blockquote{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding-block:calc(var(--nav-h) + var(--space-8)) var(--space-8);
 }
-.hero__canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero__inner{position:relative;z-index:1}
+/* canvas backdrop: edge-faded so the motes/sigil never hard-cut at the frame */
+.hero__canvas{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  -webkit-mask-image:radial-gradient(130% 100% at 50% 42%,#000 55%,transparent 100%);
+          mask-image:radial-gradient(130% 100% at 50% 42%,#000 55%,transparent 100%);
+}
+/* a soft seam easing the hero into the first section below */
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,var(--void-700));
+}
+.hero__inner{position:relative;z-index:2}
 .hero .sigil-lg{font-size:clamp(56px,11vw,116px);line-height:1;filter:drop-shadow(var(--glow-gold));animation:float 7s var(--ease-in-out) infinite}
+.hero h1{margin-top:var(--space-2);font-size:var(--step-5)}
 .titles{margin-top:var(--space-4);font-family:var(--font-display);font-style:italic;font-size:var(--step-1);color:var(--gold-300);letter-spacing:.05em}
 .tagline{margin:var(--space-5) auto 0;max-width:54ch;color:var(--ash)}
 .hero__cta{margin-top:var(--space-7);display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap}
-.scroll-cue{margin-top:var(--space-8);color:var(--gold-500);font-size:var(--step--1);letter-spacing:.32em;text-transform:uppercase;opacity:.7;animation:pulse 3s var(--ease-in-out) infinite}
+.scroll-cue{
+  margin-top:var(--space-8);display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-2);
+  color:var(--gold-500);font-size:var(--step--1);letter-spacing:.32em;text-transform:uppercase;opacity:.72;
+  text-decoration:none;transition:color var(--dur-1) var(--ease-out),opacity var(--dur-1) var(--ease-out);
+}
+.scroll-cue:hover,.scroll-cue:focus-visible{color:var(--gold-300);opacity:1}
+.scroll-cue .chev{font-size:1.1em;line-height:.6;animation:bob 2.4s var(--ease-in-out) infinite}
 
 /* ---- 9. FOOTER ------------------------------------------------------------- */
 .footer{padding-block:var(--space-8) var(--space-9);text-align:center;border-top:1px solid var(--hairline)}
@@ -241,6 +259,7 @@ blockquote{
 /* ---- 11. MOTION ------------------------------------------------------------ */
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:.85}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
