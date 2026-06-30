@@ -1,0 +1,247 @@
+/* =============================================================================
+   NAZARICK — design system for lordai.nz
+   Floor B1: foundation. Tokens, type, scaffolding, fixed nav, motion primitives.
+   Vanilla CSS, zero build. Mobile-first. Reduced-motion safe.
+   ========================================================================== */
+
+/* ---- 1. TOKENS ------------------------------------------------------------ */
+:root{
+  /* void-black ramp (background, deepest → raised surface) */
+  --void-900:#060409;
+  --void-800:#0a0710;
+  --void-700:#120b1c;
+  --void-600:#1a1228;
+  --void-500:#241834;
+
+  /* gold ramp (the crown) */
+  --gold-100:#f4e7c0;
+  --gold-300:#e9cd7e;
+  --gold-500:#c8a24c;
+  --gold-700:#9a7a33;
+  --gold-900:#5e4a1f;
+
+  /* blood accent (sparingly — emphasis, danger, the ember beneath) */
+  --blood-300:#c44d72;
+  --blood-500:#7b2d4e;
+  --blood-700:#4d1a30;
+
+  /* ink (text on void) */
+  --bone:#e8e2d4;
+  --ash:#9a93a8;
+  --ash-dim:#6c6678;
+
+  /* semantic surface aliases */
+  --bg:var(--void-800);
+  --surface:rgba(18,11,28,.55);
+  --surface-solid:var(--void-700);
+  --hairline:rgba(200,162,76,.14);
+  --hairline-strong:rgba(200,162,76,.32);
+
+  /* type */
+  --font-display:"Cormorant Garamond","Hoefler Text",Georgia,"Times New Roman",serif;
+  --font-text:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+
+  /* modular type scale (1.25 minor third, fluid via clamp) */
+  --step--1:clamp(.78rem,.74rem + .2vw,.875rem);
+  --step-0: clamp(1rem,.95rem + .3vw,1.125rem);
+  --step-1: clamp(1.2rem,1.1rem + .6vw,1.5rem);
+  --step-2: clamp(1.5rem,1.3rem + 1vw,2.1rem);
+  --step-3: clamp(1.95rem,1.6rem + 1.9vw,3rem);
+  --step-4: clamp(2.6rem,2rem + 3.4vw,4.5rem);
+  --step-5: clamp(3.2rem,2.2rem + 6.2vw,7rem);
+
+  /* spacing scale (rem, 4px base) */
+  --space-1:.25rem;
+  --space-2:.5rem;
+  --space-3:.75rem;
+  --space-4:1rem;
+  --space-5:1.5rem;
+  --space-6:2rem;
+  --space-7:3rem;
+  --space-8:4.5rem;
+  --space-9:7rem;
+
+  /* radius */
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:22px;
+  --r-pill:999px;
+
+  /* elevation */
+  --e-1:0 1px 2px rgba(0,0,0,.4);
+  --e-2:0 8px 28px rgba(0,0,0,.45);
+  --e-3:0 24px 64px rgba(0,0,0,.55);
+  --glow-gold:0 0 28px rgba(200,162,76,.28);
+  --glow-blood:0 0 30px rgba(123,45,78,.30);
+
+  /* motion primitives */
+  --dur-1:.18s;
+  --dur-2:.32s;
+  --dur-3:.6s;
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+
+  /* layout */
+  --measure:72ch;
+  --container:1080px;
+  --nav-h:64px;
+}
+
+/* ---- 2. RESET -------------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 12px);
+  -webkit-text-size-adjust:100%;
+}
+body{
+  background:
+    radial-gradient(1200px 720px at 50% -8%, rgba(123,45,78,.20), transparent 60%),
+    radial-gradient(960px 620px at 50% 112%, rgba(200,162,76,.10), transparent 60%),
+    linear-gradient(180deg,var(--void-800),var(--void-700));
+  background-attachment:fixed;
+  color:var(--bone);
+  font-family:var(--font-text);
+  font-size:var(--step-0);
+  line-height:1.65;
+  min-height:100svh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:rgba(200,162,76,.28);color:var(--bone)}
+
+/* faint sigil grid behind everything */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;z-index:0;
+  background-image:
+    linear-gradient(rgba(200,162,76,.6) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,162,76,.6) 1px,transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(circle at 50% 36%,#000,transparent 78%);
+          mask-image:radial-gradient(circle at 50% 36%,#000,transparent 78%);
+}
+
+/* ---- 3. LAYOUT PRIMITIVES -------------------------------------------------- */
+.wrap{position:relative;z-index:1;width:100%;max-width:var(--container);margin-inline:auto;padding-inline:clamp(1.25rem,5vw,2.5rem)}
+.section{padding-block:var(--space-9);border-top:1px solid var(--hairline)}
+.section:first-of-type{border-top:0}
+.stack > * + *{margin-top:var(--space-5)}
+.measure{max-width:var(--measure)}
+
+/* ---- 4. TYPE --------------------------------------------------------------- */
+h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:.01em;line-height:1.05}
+h1{font-size:var(--step-5)}
+h2{font-size:var(--step-3);color:var(--bone)}
+h3{font-size:var(--step-1);color:var(--gold-300)}
+p{max-width:var(--measure)}
+.lede{font-size:var(--step-1);color:#cfc8d8;font-weight:400}
+.muted{color:var(--ash)}
+.eyebrow{
+  display:inline-block;font-size:var(--step--1);font-weight:600;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--gold-500);
+  margin-bottom:var(--space-4);
+}
+.gold-text{
+  background:linear-gradient(180deg,var(--bone),var(--gold-300) 58%,var(--gold-500));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 42px rgba(200,162,76,.12);
+}
+blockquote{
+  font-family:var(--font-display);font-style:italic;
+  font-size:var(--step-2);color:var(--gold-300);line-height:1.35;
+  border-left:2px solid var(--gold-500);padding:.2em 0 .2em var(--space-5);
+}
+.rule{width:90px;height:1px;margin:var(--space-6) auto;background:linear-gradient(90deg,transparent,var(--gold-500),transparent)}
+
+/* ---- 5. NAV (fixed) -------------------------------------------------------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);
+  display:flex;align-items:center;
+  background:linear-gradient(180deg,rgba(6,4,9,.86),rgba(6,4,9,.40));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--font-display);font-size:1.25rem;color:var(--bone);letter-spacing:.02em}
+.brand .sigil{font-size:1.3rem;filter:drop-shadow(var(--glow-gold))}
+.brand b{color:var(--gold-300);font-weight:600}
+.nav-links{display:none;align-items:center;gap:var(--space-6);list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--ash);font-size:var(--step--1);
+  letter-spacing:.16em;text-transform:uppercase;
+  transition:color var(--dur-1) var(--ease-out);
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--gold-300)}
+@media(min-width:760px){.nav-links{display:flex}}
+
+/* ---- 6. BUTTONS ------------------------------------------------------------ */
+.btn{
+  --b-fg:var(--void-900);--b-bg:var(--gold-500);
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.7rem 1.4rem;border-radius:var(--r-pill);
+  font-family:var(--font-text);font-size:var(--step--1);font-weight:600;
+  letter-spacing:.06em;text-decoration:none;cursor:pointer;border:1px solid transparent;
+  color:var(--b-fg);background:var(--b-bg);
+  transition:transform var(--dur-1) var(--ease-out),box-shadow var(--dur-2) var(--ease-out),background var(--dur-1) var(--ease-out);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--glow-gold)}
+.btn--ghost{--b-fg:var(--gold-300);background:transparent;border-color:var(--hairline-strong)}
+.btn--ghost:hover{background:rgba(200,162,76,.08)}
+
+/* ---- 7. CARD --------------------------------------------------------------- */
+.card{
+  padding:var(--space-6);border:1px solid var(--hairline);border-radius:var(--r-md);
+  background:var(--surface);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  box-shadow:var(--e-1);
+  transition:transform var(--dur-2) var(--ease-out),border-color var(--dur-2) var(--ease-out),box-shadow var(--dur-2) var(--ease-out);
+}
+.card.is-link{text-decoration:none;color:var(--bone);display:block}
+.card.is-link:hover{transform:translateY(-3px);border-color:var(--gold-500);box-shadow:var(--e-2),var(--glow-gold)}
+.card .k{font-family:var(--font-display);font-size:var(--step-1);color:var(--gold-300)}
+.card .v{color:var(--ash);font-size:var(--step--1);margin-top:var(--space-2)}
+
+.grid{display:grid;gap:var(--space-5)}
+@media(min-width:680px){.grid--2{grid-template-columns:1fr 1fr}.grid--3{grid-template-columns:repeat(3,1fr)}}
+
+/* ---- 8. HERO scaffolding (B2 fills the canvas) ----------------------------- */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding-block:calc(var(--nav-h) + var(--space-8)) var(--space-8);
+}
+.hero__canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero__inner{position:relative;z-index:1}
+.hero .sigil-lg{font-size:clamp(56px,11vw,116px);line-height:1;filter:drop-shadow(var(--glow-gold));animation:float 7s var(--ease-in-out) infinite}
+.titles{margin-top:var(--space-4);font-family:var(--font-display);font-style:italic;font-size:var(--step-1);color:var(--gold-300);letter-spacing:.05em}
+.tagline{margin:var(--space-5) auto 0;max-width:54ch;color:var(--ash)}
+.hero__cta{margin-top:var(--space-7);display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap}
+.scroll-cue{margin-top:var(--space-8);color:var(--gold-500);font-size:var(--step--1);letter-spacing:.32em;text-transform:uppercase;opacity:.7;animation:pulse 3s var(--ease-in-out) infinite}
+
+/* ---- 9. FOOTER ------------------------------------------------------------- */
+.footer{padding-block:var(--space-8) var(--space-9);text-align:center;border-top:1px solid var(--hairline)}
+.footer .sigil{font-size:34px;margin-bottom:var(--space-3)}
+.footer p{margin-inline:auto;color:var(--ash);font-size:var(--step--1)}
+.footer .law{font-family:var(--font-display);font-style:italic;color:var(--gold-500);font-size:var(--step-0);margin-top:var(--space-2)}
+.link{color:var(--gold-300);text-decoration:none;border-bottom:1px solid rgba(200,162,76,.4)}
+.link:hover{border-color:var(--gold-500)}
+
+/* ---- 10. A11Y -------------------------------------------------------------- */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  padding:.6rem 1rem;background:var(--gold-500);color:var(--void-900);
+  border-radius:0 0 var(--r-sm) 0;font-weight:600;
+}
+.skip-link:focus{left:0}
+:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px;border-radius:2px}
+
+/* ---- 11. MOTION ------------------------------------------------------------ */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.85}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}

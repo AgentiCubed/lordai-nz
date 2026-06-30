@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lord Ainz sigil">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e7c0"/>
+      <stop offset="0.6" stop-color="#e9cd7e"/>
+      <stop offset="1" stop-color="#c8a24c"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0a0710"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.55"/>
+  <!-- crown: three peaks over a band -->
+  <path d="M18 38 L18 27 L26 33 L32 22 L38 33 L46 27 L46 38 Z"
+        fill="url(#g)"/>
+  <rect x="18" y="40" width="28" height="4" rx="1.5" fill="url(#g)"/>
+  <circle cx="32" cy="22" r="2.4" fill="#c44d72"/>
+</svg>

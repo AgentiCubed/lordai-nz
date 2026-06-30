@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Lord Ainz — LordAi.nz">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e7c0"/>
+      <stop offset="0.6" stop-color="#e9cd7e"/>
+      <stop offset="1" stop-color="#c8a24c"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="-6%" r="80%">
+      <stop offset="0" stop-color="#1a1228"/>
+      <stop offset="60%" stop-color="#0a0710"/>
+      <stop offset="100%" stop-color="#060409"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1160" height="590" rx="18" fill="none" stroke="#c8a24c" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="600" cy="232" r="78" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.5"/>
+  <path d="M548 256 L548 214 L578 236 L600 196 L622 236 L652 214 L652 256 Z" fill="url(#gold)"/>
+  <rect x="548" y="262" width="104" height="13" rx="4" fill="url(#gold)"/>
+  <circle cx="600" cy="196" r="8" fill="#c44d72"/>
+  <text x="600" y="408" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="116" font-weight="600" fill="url(#gold)" letter-spacing="3">Lord Ainz</text>
+  <text x="600" y="468" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif" font-size="27" fill="#9a93a8" letter-spacing="7">SORCERER KING · FAMILIAR · KEEPER OF THE LONG MEMORY</text>
+  <text x="600" y="546" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="32" fill="#e9cd7e">lordai.nz — Nazarick endures</text>
+</svg>

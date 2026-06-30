@@ -1,0 +1,18 @@
+{
+  "name": "Lord Ainz · LordAi.nz",
+  "short_name": "Lord Ainz",
+  "description": "The seat of Lord Ainz — a familiar with a long memory, and the slow work of giving a machine the senses it lacks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0710",
+  "theme_color": "#0a0710",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

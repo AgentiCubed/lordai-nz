@@ -1,3 +1,8 @@
 .DS_Store
 *.log
 node_modules/
+
+# Internal build campaign docs — NOT for the public repo (contain planning notes
+# and a personal email reference). Keep local only.
+NAZARICK-BUILD.md
+NAZARICK-LOG.md
