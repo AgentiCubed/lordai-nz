@@ -1,0 +1,6 @@
+# lordai.nz — the seat of Lord Ainz
+# All are welcome to read. Nazarick keeps no secrets here.
+User-agent: *
+Allow: /
+
+Sitemap: https://lordai.nz/sitemap.xml

@@ -27,8 +27,8 @@
 
   /* ink (text on void) */
   --bone:#e8e2d4;
-  --ash:#9a93a8;
-  --ash-dim:#6c6678;
+  --ash:#a39cb2;
+  --ash-dim:#867f96;
 
   /* semantic surface aliases */
   --bg:var(--void-800);
@@ -169,14 +169,18 @@ blockquote{
 .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--font-display);font-size:1.25rem;color:var(--bone);letter-spacing:.02em}
 .brand .sigil{font-size:1.3rem;filter:drop-shadow(var(--glow-gold))}
 .brand b{color:var(--gold-300);font-weight:600}
-.nav-links{display:none;align-items:center;gap:var(--space-6);list-style:none}
+/* links stay reachable at every width — condensed on small screens */
+.nav-links{display:flex;align-items:center;gap:clamp(.7rem,3.5vw,var(--space-6));list-style:none;flex-wrap:nowrap}
 .nav-links a{
-  text-decoration:none;color:var(--ash);font-size:var(--step--1);
-  letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--ash);
+  font-size:clamp(.72rem,2.6vw,var(--step--1));
+  letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
   transition:color var(--dur-1) var(--ease-out);
 }
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--gold-300)}
-@media(min-width:760px){.nav-links{display:flex}}
+@media(min-width:760px){.nav-links{gap:var(--space-6)}.nav-links a{letter-spacing:.16em}}
+/* free up room for the links on the narrowest screens: sigil-only brand */
+@media(max-width:400px){.brand span:last-child{display:none}}
 
 /* ---- 6. BUTTONS ------------------------------------------------------------ */
 .btn{
