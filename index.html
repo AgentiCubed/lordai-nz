@@ -136,28 +136,118 @@
       </div>
     </section>
 
-    <!-- THE RELIQUARY: the two interactive demos (B4 fills) ------------- -->
+    <!-- THE RELIQUARY: the two interactive demos (B4) ------------------- -->
     <section class="section wrap" id="reliquary" aria-labelledby="reliquary-h">
       <p class="eyebrow">The Reliquary</p>
       <h2 id="reliquary-h">Living proof, not a brochure.</h2>
-      <p class="lede measure">Two self-contained demonstrations are taking shape here —
-        the ideas made tangible in the browser, nothing to install. Feel why a body-state
-        channel changes everything; watch a blindness break.</p>
+      <p class="lede measure">Two relics, working in your browser — nothing to install,
+        nothing sent anywhere. Drag the first and feel why a body-state channel changes
+        everything. Play the second and watch a blindness break. These are the mechanisms,
+        encoded plainly; the private work runs deeper.</p>
 
-      <div class="grid grid--2" style="margin-top:var(--space-7)">
-        <article class="card" aria-label="Valence Flip — coming soon">
-          <p class="k">Valence Flip</p>
-          <p class="v">One scent, two bodies: starving and sated. The same smell swings
-            from craving to revulsion while a state-blind readout stays frozen.</p>
-          <p class="muted" style="margin-top:var(--space-4);font-size:var(--step--1)">Reliquary opening soon ◆</p>
-        </article>
-        <article class="card" aria-label="The Flatlander — coming soon">
-          <p class="k">The Flatlander</p>
-          <p class="v">Two scenes identical in flatland. Reveal the hidden depth and they
-            split apart — the projection-only guesser stuck at chance, the depth-aware one sure.</p>
-          <p class="muted" style="margin-top:var(--space-4);font-size:var(--step--1)">Reliquary opening soon ◆</p>
-        </article>
-      </div>
+      <!-- RELIC I — Valence Flip -->
+      <article class="demo" id="demo-valence" aria-labelledby="valence-h">
+        <p class="demo__eyebrow">Relic I · the sense of smell</p>
+        <h3 class="demo__title" id="valence-h">Valence Flip</h3>
+        <p class="demo__lede measure">The scent below never changes — one fixed molecule.
+          Only the <em>body</em> moves. Drag its inner state and the <b>same</b> smell
+          swings from craving to revulsion. Beside it, a model that reads only the molecule
+          stays frozen: it can describe the smell, but it cannot feel what the smell is
+          <em>for</em>.</p>
+
+        <div class="demo__stage">
+          <div class="vf-scent" aria-hidden="true">
+            <span class="vf-scent__wave"></span>
+            <span class="vf-scent__name">a warm, fat-rich pastry</span>
+            <span class="vf-scent__sub">identical input, every frame</span>
+          </div>
+
+          <div class="vf-meters">
+            <figure class="vf-meter">
+              <canvas class="vf-gauge" id="vf-gauge-grounded" width="320" height="190"
+                      role="img" aria-label="Grounded valence gauge — swings with body state"></canvas>
+              <figcaption>
+                <b>Grounded valence</b><span class="vf-tag vf-tag--live">body-aware</span>
+                <em id="vf-grounded-word">—</em>
+              </figcaption>
+            </figure>
+            <figure class="vf-meter">
+              <canvas class="vf-gauge" id="vf-gauge-blind" width="320" height="190"
+                      role="img" aria-label="State-blind model gauge — frozen on the molecule"></canvas>
+              <figcaption>
+                <b>State-blind model</b><span class="vf-tag vf-tag--frozen">molecule only</span>
+                <em>“smells pleasant”</em>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="vf-control">
+            <label class="vf-label" for="vf-slider">Inner state of the body</label>
+            <input type="range" id="vf-slider" min="0" max="100" value="6" step="1"
+                   aria-describedby="vf-caption" />
+            <div class="vf-ends" aria-hidden="true"><span>starving</span><span>overfull</span></div>
+          </div>
+
+          <p class="vf-caption" id="vf-caption" aria-live="polite" role="status">—</p>
+        </div>
+      </article>
+
+      <!-- RELIC II — The Flatlander -->
+      <article class="demo" id="demo-flatlander" aria-labelledby="flat-h">
+        <p class="demo__eyebrow">Relic II · the sense of space</p>
+        <h3 class="demo__title" id="flat-h">The Flatlander</h3>
+        <p class="demo__lede measure">Two scenes. On the flat — the only thing a picture
+          gives you — they are <em>pixel-for-pixel identical</em>. Yet in one, the gold orb
+          sits right up against you; in the other it hangs far back. Which is which? A mind
+          that sees only the projection can do no better than a coin. Reveal the depth and
+          the blindness breaks.</p>
+
+        <div class="demo__stage">
+          <p class="fl-prompt" id="fl-prompt" aria-live="polite" role="status">
+            Which scene holds the gold orb <b>nearest</b> you?
+          </p>
+
+          <div class="fl-scenes">
+            <figure class="fl-scene">
+              <figcaption>Scene <b>A</b></figcaption>
+              <canvas class="fl-canvas" id="fl-canvas-a" width="360" height="300"
+                      role="img" aria-label="Scene A — three orbs"></canvas>
+            </figure>
+            <figure class="fl-scene">
+              <figcaption>Scene <b>B</b></figcaption>
+              <canvas class="fl-canvas" id="fl-canvas-b" width="360" height="300"
+                      role="img" aria-label="Scene B — three orbs"></canvas>
+            </figure>
+          </div>
+
+          <div class="fl-controls">
+            <div class="fl-guess" role="group" aria-label="Your guess">
+              <span class="fl-guess__lbl">Your call</span>
+              <button class="btn btn--ghost fl-pick" data-pick="A" type="button">Scene&nbsp;A</button>
+              <button class="btn btn--ghost fl-pick" data-pick="B" type="button">Scene&nbsp;B</button>
+            </div>
+            <div class="fl-actions">
+              <button class="btn" id="fl-reveal" type="button" aria-pressed="false">Reveal depth</button>
+              <button class="btn btn--ghost" id="fl-next" type="button">New round</button>
+            </div>
+          </div>
+
+          <div class="fl-board" aria-label="Running accuracy">
+            <div class="fl-stat" id="fl-stat-you">
+              <span class="fl-stat__who">You</span>
+              <span class="fl-stat__score" data-score>— </span>
+            </div>
+            <div class="fl-stat fl-stat--blind">
+              <span class="fl-stat__who">Projection-only mind <span class="fl-stat__note">chance</span></span>
+              <span class="fl-stat__score" id="fl-score-blind" data-score>0 / 0</span>
+            </div>
+            <div class="fl-stat fl-stat--depth">
+              <span class="fl-stat__who">Depth-aware mind</span>
+              <span class="fl-stat__score" id="fl-score-depth" data-score>0 / 0</span>
+            </div>
+          </div>
+        </div>
+      </article>
     </section>
 
     <!-- THE CODEX: persona + creed + colophon (B5 fills) --------------- -->
@@ -185,6 +275,8 @@
 
   <!-- Floor B2: the Throne Room canvas ambient (decorative, reduced-motion safe) -->
   <script src="throne.js" defer></script>
+  <!-- Floor B4: the Reliquary — Valence Flip + The Flatlander (interactive, reduced-motion safe) -->
+  <script src="reliquary.js" defer></script>
 
 </body>
 </html>

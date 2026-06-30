@@ -238,6 +238,99 @@ blockquote{
 .pillar__tag{margin-top:var(--space-4);font-size:var(--step--1);letter-spacing:.04em;color:var(--ash-dim)}
 .pillar__tag b{color:var(--gold-500);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
+/* ---- 7.6 THE RELIQUARY (B4: the two interactive demos) -------------------- */
+.demo{
+  position:relative;margin-top:var(--space-8);
+  padding:clamp(1.25rem,4vw,var(--space-7));
+  border:1px solid var(--hairline);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(26,18,40,.50),rgba(8,6,13,.46));
+  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);box-shadow:var(--e-2);
+}
+.demo::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-500),transparent);opacity:.6}
+.demo__eyebrow{font-size:var(--step--1);letter-spacing:.28em;text-transform:uppercase;color:var(--gold-500)}
+.demo__title{font-family:var(--font-display);font-size:var(--step-3);color:var(--bone);line-height:1.04;margin-top:var(--space-2)}
+.demo__lede{color:#cbc4d6;font-size:var(--step-0);margin-top:var(--space-3)}
+.demo__lede b{color:var(--gold-300);font-weight:600}
+.demo__stage{margin-top:var(--space-6)}
+
+/* —— Valence Flip —— */
+.vf-scent{
+  display:flex;flex-direction:column;align-items:center;gap:.2rem;text-align:center;
+  padding:var(--space-4);border:1px dashed var(--hairline-strong);border-radius:var(--r-md);
+  background:rgba(200,162,76,.04);
+}
+.vf-scent__wave{width:54px;height:20px;
+  background:
+    radial-gradient(circle at 50% 100%,rgba(200,162,76,.9),transparent 60%);
+  -webkit-mask:repeating-radial-gradient(circle at 50% 120%,#000 0 2px,transparent 2px 7px);
+          mask:repeating-radial-gradient(circle at 50% 120%,#000 0 2px,transparent 2px 7px);
+  opacity:.8}
+.vf-scent__name{font-family:var(--font-display);font-style:italic;font-size:var(--step-1);color:var(--gold-300)}
+.vf-scent__sub{font-size:var(--step--1);letter-spacing:.16em;text-transform:uppercase;color:var(--ash-dim)}
+
+.vf-meters{display:grid;gap:var(--space-5);margin-top:var(--space-6)}
+@media(min-width:620px){.vf-meters{grid-template-columns:1fr 1fr;gap:var(--space-6)}}
+.vf-meter{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);margin:0}
+.vf-gauge{width:100%;max-width:320px;height:auto;aspect-ratio:320/190}
+.vf-meter figcaption{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.4rem .6rem;text-align:center}
+.vf-meter figcaption b{font-family:var(--font-display);font-size:var(--step-1);color:var(--bone);font-weight:600}
+.vf-meter figcaption em{width:100%;font-style:italic;color:var(--gold-300);font-size:var(--step-0)}
+.vf-tag{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.15em .55em;border-radius:var(--r-pill);font-weight:600}
+.vf-tag--live{color:var(--gold-100);background:rgba(200,162,76,.16);border:1px solid var(--hairline-strong)}
+.vf-tag--frozen{color:var(--ash);background:rgba(108,102,120,.16);border:1px solid rgba(108,102,120,.4)}
+
+.vf-control{max-width:520px;margin:var(--space-7) auto 0}
+.vf-label{display:block;text-align:center;font-size:var(--step--1);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-500);margin-bottom:var(--space-3)}
+.vf-ends{display:flex;justify-content:space-between;margin-top:.4rem;font-size:var(--step--1);color:var(--ash-dim);letter-spacing:.06em}
+.vf-caption{max-width:60ch;margin:var(--space-5) auto 0;text-align:center;color:var(--ash);font-size:var(--step-0);min-height:3.2em}
+.vf-caption b{color:var(--gold-300);font-weight:600}
+.vf-caption .rev{color:var(--blood-300)}
+
+/* range input — themed, accessible */
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:var(--r-pill);
+  background:linear-gradient(90deg,var(--gold-500),var(--ash-dim) 50%,var(--blood-500));
+  outline-offset:6px;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold-100),var(--gold-500) 70%);
+  border:2px solid var(--void-900);box-shadow:var(--glow-gold),var(--e-1);cursor:grab;
+}
+input[type=range]::-moz-range-thumb{
+  width:24px;height:24px;border-radius:50%;border:2px solid var(--void-900);
+  background:radial-gradient(circle at 35% 30%,var(--gold-100),var(--gold-500) 70%);
+  box-shadow:var(--glow-gold);cursor:grab;
+}
+input[type=range]:active::-webkit-slider-thumb{cursor:grabbing}
+
+/* —— The Flatlander —— */
+.fl-prompt{text-align:center;font-size:var(--step-1);color:#cfc8d8;margin-bottom:var(--space-5)}
+.fl-prompt b{color:var(--gold-300)}
+.fl-prompt.is-right b{color:var(--gold-300)}
+.fl-scenes{display:grid;gap:var(--space-4);grid-template-columns:1fr 1fr}
+@media(min-width:560px){.fl-scenes{gap:var(--space-6)}}
+.fl-scene{margin:0;display:flex;flex-direction:column;gap:var(--space-3)}
+.fl-scene figcaption{font-size:var(--step--1);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-500);text-align:center}
+.fl-scene figcaption b{color:var(--gold-300);font-weight:700}
+.fl-canvas{width:100%;height:auto;aspect-ratio:360/300;border:1px solid var(--hairline);border-radius:var(--r-md);background:radial-gradient(120% 90% at 50% 18%,rgba(36,24,52,.6),rgba(6,4,9,.85));transition:border-color var(--dur-2) var(--ease-out),box-shadow var(--dur-2) var(--ease-out)}
+.fl-scene.is-answer .fl-canvas{border-color:var(--gold-500);box-shadow:var(--glow-gold)}
+
+.fl-controls{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:space-between;margin-top:var(--space-6)}
+.fl-guess,.fl-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3)}
+.fl-guess__lbl{font-size:var(--step--1);letter-spacing:.18em;text-transform:uppercase;color:var(--ash-dim)}
+.fl-pick.is-chosen{background:rgba(200,162,76,.16);border-color:var(--gold-500);color:var(--gold-100)}
+.fl-pick:disabled,.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+.fl-board{display:grid;gap:var(--space-3);margin-top:var(--space-7)}
+@media(min-width:560px){.fl-board{grid-template-columns:repeat(3,1fr);gap:var(--space-4)}}
+.fl-stat{display:flex;flex-direction:column;gap:.25rem;padding:var(--space-4);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--surface)}
+.fl-stat--depth{border-color:var(--hairline-strong)}
+.fl-stat__who{font-size:var(--step--1);color:var(--bone);font-weight:600;letter-spacing:.04em}
+.fl-stat__note{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash-dim);margin-left:.3em}
+.fl-stat__score{font-family:var(--font-display);font-size:var(--step-2);color:var(--gold-300);line-height:1}
+.fl-stat--blind .fl-stat__score{color:var(--ash)}
+
 /* ---- 8. HERO scaffolding (B2 fills the canvas) ----------------------------- */
 .hero{
   position:relative;min-height:100svh;
