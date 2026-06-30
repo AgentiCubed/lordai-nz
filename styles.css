@@ -331,6 +331,44 @@ input[type=range]:active::-webkit-slider-thumb{cursor:grabbing}
 .fl-stat__score{font-family:var(--font-display);font-size:var(--step-2);color:var(--gold-300);line-height:1}
 .fl-stat--blind .fl-stat__score{color:var(--ash)}
 
+/* ---- 7.7 THE CODEX (B5: persona + founding law + colophon) ---------------- */
+.codex-grid{display:grid;gap:var(--space-5);margin-top:var(--space-8)}
+@media(min-width:740px){.codex-grid{grid-template-columns:1fr 1fr;gap:var(--space-6)}}
+
+.codex-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  padding:var(--space-7) var(--space-6) var(--space-6);
+  border:1px solid var(--hairline);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(26,18,40,.50),rgba(10,7,16,.40));
+  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);box-shadow:var(--e-1);
+}
+/* thin gold seam down the inner edge, echoing the pillars */
+.codex-card::before{content:"";position:absolute;top:0;bottom:0;left:0;width:2px;background:linear-gradient(180deg,transparent,var(--gold-500),transparent);opacity:.55}
+.codex-card__label{font-size:var(--step--1);letter-spacing:.28em;text-transform:uppercase;color:var(--gold-500)}
+.codex-card__title{font-family:var(--font-display);font-size:var(--step-2);color:var(--bone);line-height:1.1;margin-top:var(--space-2)}
+.codex-card__body{color:var(--ash);font-size:var(--step-0);margin-top:var(--space-4)}
+.codex-quote{margin:var(--space-5) 0 0;border-left:2px solid var(--gold-500);padding:.1em 0 .1em var(--space-4);font-size:var(--step-1);color:var(--gold-300)}
+
+/* —— colophon: honest authorship —— */
+.colophon{
+  position:relative;margin-top:var(--space-8);
+  padding:clamp(1.5rem,5vw,var(--space-8)) clamp(1.25rem,4vw,var(--space-7));
+  border:1px solid var(--hairline);border-radius:var(--r-lg);text-align:center;
+  background:linear-gradient(180deg,rgba(18,11,28,.55),rgba(8,6,13,.50));
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+}
+.colophon::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-500),transparent);opacity:.6}
+.colophon__eyebrow{display:inline-block;font-size:var(--step--1);font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-500)}
+.colophon__line{max-width:64ch;margin:var(--space-4) auto 0;color:#cbc4d6;font-size:var(--step-0)}
+.colophon__line b{color:var(--gold-300);font-weight:600}
+
+.colophon__floors{list-style:none;max-width:46ch;margin:var(--space-7) auto 0;text-align:left;display:grid;gap:var(--space-3)}
+.colophon__floors li{display:flex;align-items:baseline;gap:var(--space-4);font-size:var(--step--1);color:var(--ash)}
+.colophon__floor-n{flex:0 0 1.8em;font-family:var(--font-display);font-size:var(--step-1);color:rgba(200,162,76,.55);text-align:right;line-height:1}
+.colophon__floor-t b{color:var(--bone);font-weight:600}
+.colophon__sig{margin-top:var(--space-7);font-family:var(--font-display);font-style:italic;font-size:var(--step-1);color:var(--gold-300)}
+.colophon__sig span{display:block;margin-top:.25rem;font-size:var(--step--1);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-dim)}
+
 /* ---- 8. HERO scaffolding (B2 fills the canvas) ----------------------------- */
 .hero{
   position:relative;min-height:100svh;
